@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <title></title>
     <script>
-        ....
+        window.onload = () => {
+        const bt = document.getElementById('bt');
+        const inp = document.getElementById('inp');
+        bt.onclick = () => {
+            const x = inp.value;
+            fetch(x)
+                .then((response) => {
+                    return response.text();
+                })
+                .then((data) => {
+                    inp.value = data;
+                    })
+            };
+        };
     </script>
 </head>
 <body>
