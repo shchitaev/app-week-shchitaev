@@ -5,17 +5,25 @@
     <title></title>
     <script>
         window.onload = () => {
-        const bt = document.getElementById('bt');
+            const bt = document.getElementById('bt');
+        console.log('bt:', bt);
         const inp = document.getElementById('inp');
+        console.log('inp:', inp);
         bt.onclick = () => {
             const x = inp.value;
+            console.log('x:', x);
             fetch(x)
                 .then((response) => {
+                    console.log('fetch ok:', response);
                     return response.text();
                 })
                 .then((data) => {
                     inp.value = data;
-                    })
+                    console.log('it`s all right:', data);
+                })
+                .catch((e) => {
+                    console.log('something went wrong, suddenly:', e);
+                });
             };
         };
     </script>
