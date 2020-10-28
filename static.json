@@ -5,6 +5,9 @@
       "Access-Control-Allow-Origin": "*",
       "X-Author": "itmo287704" 
     },
+    "/login/": {
+      "Access-Control-Allow-Origin": "*"
+    },
     "/promise/": {
       "Access-Control-Allow-Origin": "*"
     },
