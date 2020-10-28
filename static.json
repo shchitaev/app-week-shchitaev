@@ -1,15 +1,17 @@
 {
   "headers": {
-    "/*": {
-     "Content-Type": "text/plain; charset=UTF-8",
-     "Access-Control-Allow-Origin": "*"
-     },
+    "/**": {
+      "X-Author": "itmo287704",
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "text/plain; charset=UTF-8"
+    },
     "/fetch/": {
-            "Access-Control-Allow-Origin": "*"
-        },
-    "/promise/": {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type":"text/plain; charset=UTF-8"
-        }
-     }
+      "Content-Type": "text/html; charset=UTF-8"
+    }
+  },
+  "routes": {
+    "/": "index.html",
+    "/fetch/": "index.html",
+    "/promise/": "index.html",
+  }
 }
