@@ -4,5 +4,12 @@
      "Content-Type": "text/plain; charset=UTF-8",
      "Access-Control-Allow-Origin": "*"
      }
-  }
+    "/fetch/": {
+            "Access-Control-Allow-Origin": "*"
+        },
+    "/promise/": {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type":"text/plain; charset=UTF-8"
+        },
+     }
 }
