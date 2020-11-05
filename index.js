@@ -5,23 +5,20 @@ const CORS = {
     'Access-Control-Allow-Headers': 'x-test, Content-Type, Accept, Access-Control-Allow-Headers'
   };
 const server = http.createServer(async(req,res)=>{
-      if(req.url === '/result4/'){
-          res.writeHead(200,{
-              'Content-Type':'application/json',
-              ...CORS,
-          })
-          let data = '';
-          await req.on('data', function(chunk){
-            data += chunk;
-            }).on('end', () => {
-          })
-          res.write(JSON.stringify({
-            "message":"itmo287704",
-            "x-result":req.headers['x-test'],
-            "x-body":data
-            }
-            ))
-      }
-      res.end()    
-  });
-  server.listen(4321,()=>{
+      if (req.url === '/result4/') {
+    let body = [];
+    req.on('data', (chunk) => {
+      body.push(chunk);
+    }).on('end', () => {
+      body = Buffer.concat(body).toString();
+
+      return res.end(JSON.stringify({
+        'message': 'itmo287704',
+        'x-result': req.headers['x-test'],
+        'x-body': body,
+      }))
+    })
+  } else {
+    res.end('itmo287704')
+  }
+}).listen(process.env.PORT)
