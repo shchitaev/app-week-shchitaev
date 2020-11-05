@@ -1,26 +1,31 @@
-require('http').Server((req, res) => {
-  const author = 'itmo287704'
+import { Server } from 'http';
 
-  res.setHeader('X-Author', author)
-  res.setHeader('Content-Type', 'application/json')
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
-  res.setHeader('Access-Control-Allow-Headers', 'x-test,Content-Type,Accept,Access-Control-Allow-Headers')
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET,POST,DELETE',
+  'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers'
+};
 
-  if (req.url === '/result4/') {
-    let body = [];
-    req.on('data', (chunk) => {
-      body.push(chunk);
-    }).on('end', () => {
-      body = Buffer.concat(body).toString();
+const server = Server();
 
-      return res.end(JSON.stringify({
-        message: author,
-        'x-result': req.headers['x-test'],
-        'x-body': body,
-      }))
-    })
-  } else {
-    res.end(author)
-  }
-}).listen(process.env.PORT)
+server.on('request', (req, res) => {
+  res.writeHead(200, {
+    'Content-Type': 'application/json; charset=utf-8',
+    ...CORS,
+  });
+
+  let body = '';
+  req.on('data', chunk => {
+    body += chunk.toString();
+  });
+
+  req.on('end', () => {
+    res.end(JSON.stringify({
+      'message': 'itmo287704',
+      "x-result": req.headers['x-test'],
+      'x-body': body,
+    }));
+  });
+});
+
+server.listen(4321);
